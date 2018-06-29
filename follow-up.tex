@@ -1,0 +1,120 @@
+\documentclass[a4paper,USenglish]{dfu}
+  % for A4 paper format use option "a4paper", for US-letter use option "letterpaper"
+  % for British hyphenation rules use option "UKenglish",
+  % for American hyphenation rules use option "USenglish"
+
+\usepackage{microtype} % if unwanted, comment out or use option "draft"
+
+\bibliographystyle{plain}% the recommended bibstyle
+
+% Author macros %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Machine Learning for Query Optimization in Database Management Systems
+  % \footnote{This work was partially supported by someone.}
+  }
+\titlerunning{ML for DBMS Query Optimization} % Optional,
+  % in case that the title is too long;
+  % the running title should fit into the top page column.
+
+\author[1]{Daniel Lemire}
+\author[2]{Klaus Meyer-Wegener}
+\author[3]{Anisoara Nica}
+\author[4]{Andrew Pavlo}
+
+\affil[1]{University of Quebec\\
+  Montreal, Canada\\
+  \texttt{lemire@gmail.com}}
+\affil[2]{Friedrich-Alexander-Universität Erlangen-Nürnberg\\
+  Germany\\
+  \texttt{klaus.meyer-wegener@fau.de}}
+\affil[3]{SAP SE\\
+  Waterloo, Canada\\
+  \texttt{anica@acm.org}}
+\affil[4]{Carnegie Mellon University\\
+  Pittsburgh, USA\\
+  \texttt{pavlo@cs.cmu.edu}}
+
+\authorrunning{D. Lemire et al.} % Mandatory.
+  % First: Use abbreviated first/middle names.
+  % Second (only in severe cases): Use first author plus 'et al.'
+
+\Copyright[by]{D. Lemire, K. Meyer-Wegener, A. Nica, and A. Pavlo} % Mandatory.
+  % Default is "by";
+  % http://creativecommons.org/licenses/by/3.0/
+
+\subjclass{Dummy classification} % mandatory:
+  % Please choose ACM 1998 classifications from
+  % http://www.acm.org/about/class/ccs98-html .
+  % E.g., cite as "F.1.1 Models of Computation". 
+\keywords{Dummy keyword} % Mandatory:
+  % Please provide 1-5 keywords.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Editor-only macros (do not touch as author)%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\serieslogo{}%please provide filename (without suffix)
+\volumeinfo%(easychair interface)
+  {Editor}% editors
+  {1}% number of editors
+  {Dummy Event this volume is based on}% event
+  {1}% volume
+  {1}% issue
+  {1}% starting page number
+\EventShortName{}
+\DOI{10.4230/DFU.xxx.yyy.p}% to be completed by the volume editor
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+To improve query optimization,
+we are interested in estimating the logical properties of queries
+and the characteristics of their physical realizations
+(e.\,g., running time, memory).
+
+1. Selectivity estimation is an important component of physical-cost estimation in the query optimizer of a database management system (DBMS). The traditional approach to computing the estimate of an operator is to use heuristics based on data statistics, such as samples and histograms, which the DBMS derives from the underlying base table. This approach, however, may be inaccurate, especially for queries comprised of complex predicates and multiple joins. This is because one has to make assumptions about the data distributions and correlations, which are non-trivial to ascertain. We propose an alternative approach of using machine-learning (ML) methods for estimating operator selectivities. We encode conjuncts as a feature vector that captures the predicate expressions and their actual selectivities. To evaluate our approach, we trained a single-layer quadratic regression model from a sample corpus of 80,000 two-predicate conjunction queries on the TPC-H database. Our initial results show that we are able to estimate with a mean absolute error (MAE) of 18\%.
+
+2. Query optimization relies on physical-cost models that are not always optimally tuned to the specific systems and computational units. We believe that in addition to predicting logical properties, ML models can also be directly used to predict runtimes and resource consumption given the logical properties of the data. To investigate this possibility, we applied a quadratic regression model to the algorithm that computes the union of two non-uniform random arrays on both a standard Intel server and on an AMD server with an ARM processor. We found that we are able to predict the runtime with a relative MAE of less than 15\%, using ML models trained on a specific hardware.
+
+We plan to explore these problems further by investigating how to handle more complex query expressions for non-uniform and real-world data sets, or how to maintain trained 
+models under data changes. Future work should address the case where we have variable numbers of parameters used for the feature vector.
+\end{abstract}
+
+\section{Introduction}
+
+(do not use ‘bionic terminology’)
+
+Should we use ‘cyborg’? === the ‘extra brain’ outside the production DBMS
+
+“NO” Manifesto - what cannot be solved by using ML?
+
+
+
+\section{Experiments}
+
+\subsection{Logical Cost Model}
+
+Multi-column data statistics
+  -- train machine learning with correlated predicates.
+
+
+
+\subsection{Physical Cost Model}
+
+
+
+\section{Related Work}
+
+ML + Join Enumeration (SIGMOD 2018/ workshop)
+
+ML+ Logical costing (Rusia; + others)
+
+ML+Physical costing
+
+ML+ Physical Design (index structure; OtterTune Pavlo)
+
+
+
+\bibliography{follow-up}
+
+\end{document}
